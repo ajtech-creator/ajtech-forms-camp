@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campaign Forms</title>
-    <link rel="icon" type="image/png" href="image/icon.png">
+    <title>CAMPAIGN FORMS</title>
+    <link rel="icon" type="image/png" href="image/ajtech logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #04361D;
-            --accent-color: #76BA9D;
-            --bg-light: #FAF9F6;
+            --primary-color: #69bcff;      /* Ice/Sky Blue */
+            --accent-color: #111e34;       /* Deep Navy */
+            --bg-light: #FAF9F6;           /* Off-white */
+            --text-dark: #212529;
         }
 
         body { 
@@ -25,46 +26,96 @@
             padding: 0.8rem 1rem;
         }
 
-        .navbar-brand { font-weight: 800; color: var(--primary-color) !important; display: flex; align-items: center; gap: 10px; }
-        .navbar-brand img { height: 40px; }
+        .navbar-brand { 
+            font-weight: 800; 
+            color: var(--primary-color) !important; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .navbar-brand img { height: 50px; }
 
-        /* Sidebar Styling */
-        .offcanvas { background-color: var(--bg-light); width: 340px !important; border: none; }
-        .offcanvas-header { background: var(--accent-color); color: var(--primary-color); }
+        /* Modernized Hamburger Menu Icon to display cleanly on Dark Backgrounds */
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28105, 188, 255, 1%29' stroke-width='2.5' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        /* Sidebar/Offcanvas Styling */
+        .offcanvas { 
+            background-color: var(--bg-light); 
+            width: 340px !important; 
+            border: none; 
+        }
+        .offcanvas-header { 
+            background: var(--accent-color); 
+            color: white; 
+        }
+        .offcanvas-title {
+            color: var(--primary-color);
+        }
+        /* Style standard close button to contrast nicely against deep navy */
+        .offcanvas-header .btn-close {
+            filter: invert(1) grayscale(1) brightness(2);
+        }
         .offcanvas-body { padding: 0; }
 
-        /* Accordion UI */
-        .accordion-item { border: none; border-bottom: 1px solid #eee; background: transparent; }
+        /* Accordion Structure */
+        .accordion-item { 
+            border: none; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+            background: transparent; 
+        }
+        
         .accordion-button { 
             font-weight: 700; 
-            color: var(--primary-color);
+            color: var(--accent-color);
             background: var(--bg-light);
+            transition: all 0.2s ease;
         }
+
+        /* Adjusted active accordion state to complement the primary ice blue palette */
         .accordion-button:not(.collapsed) { 
-            background-color: #e8f3ee; 
-            color: var(--primary-color);
+            background-color: rgba(105, 188, 255, 0.1); 
+            color: var(--accent-color);
             box-shadow: none;
         }
 
-        /* Link Styling */
+        .accordion-button::after {
+            filter: brightness(0.2);
+        }
+
+        /* Nested Nav Links Styling */
         .nav-link { 
-            color: var(--primary-color); 
+            color: var(--accent-color); 
             font-weight: 600; 
-            padding: 12px 30px !important; 
-            border-bottom: 1px solid #f0f0f0;
-            transition: all 0.2s ease;
+            padding: 14px 30px !important; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            transition: all 0.25s ease;
             display: block;
             text-decoration: none;
         }
-        .nav-link:hover { background: #f1f1f1; padding-left: 40px !important; }
-        .nav-link.active { background: var(--primary-color) !important; color: white !important; }
+        
+        /* Interactive feedback on item hover */
+        .nav-link:hover { 
+            background: rgba(105, 188, 255, 0.15); 
+            color: var(--accent-color) !important;
+            padding-left: 38px !important; 
+        }
+        
+        /* Selected/Active link state matching the site wrapper style theme */
+        .nav-link.active { 
+            background: var(--accent-color) !important; 
+            color: var(--primary-color) !important; 
+            border-left: 4px solid var(--primary-color);
+            padding-left: 34px !important;
+        }
 
-        /* Iframe Container */
+        /* Embedded Form Container */
         .iframe-container {
             background: white;
             padding: 10px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 40px rgba(17, 30, 52, 0.06);
             margin-top: 20px;
         }
 
@@ -77,11 +128,11 @@
 
         .offcanvas-footer {
             padding: 20px;
-            background-color: #f1f1f1;
-            border-top: 1px solid #ddd;
+            background-color: #f8f9fa;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             text-align: center;
             font-size: 0.85rem;
-            color: #666;
+            color: #6c757d;
         }
     </style>
 </head>
@@ -90,7 +141,7 @@
     <nav class="navbar color-nav shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="image/ajtech.png" alt="Logo"> CAMPAIGN FORMS
+                <img src="image/ajtech logo brand.png" alt="Logo"> CAMPAIGN FORMS
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -155,7 +206,7 @@
                     </div>
                 </div>
 
-                     <div class="accordion-item">
+                <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#groupMnetwork">MAINTENANCE NETWORK</button>
                     </h2>
